@@ -45,7 +45,6 @@ const PromotionSearch = () => {
     console.log(loadInfo.data);
 
 
-
     useEffect(() => {
         load({
             debounced: mountRef.current 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PromotionCard from '../Card/Card';
+import PromotionModal from '../Modal/Modal';
 import './List.css'
 
 const PromotionList = ({ loading, promotions, error }) => {
+    const [promotionId, setPromotionId] = useState(null);
 
-    if(error){
+    if (error) {
         return <div>Ocorreu um erro inesperado</div>
     }
 
@@ -21,10 +23,20 @@ const PromotionList = ({ loading, promotions, error }) => {
             {promotions.map(promotion => (
                 <PromotionCard
                     promotion={promotion}
-                    key={promotion.id}>
+                    key={promotion.id}
+                    onClickComments={() => {
+                        setPromotionId(promotion.id)
+                    }}>
                 </PromotionCard>
 
             ))}
+            {/* <UIModal isOpen={Boolean(promotionId)} onClickClose={() => { setPromotionId(null) }}>
+                <h1>Comentários</h1>
+            </UIModal> */}
+            {promotionId && (
+                <PromotionModal promotionId={promotionId} onClickClose={() => setPromotionId(null)} />
+            )}
+
         </div>
     )
 }

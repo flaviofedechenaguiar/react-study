@@ -8,6 +8,7 @@ export default function useDebouncedPromise(fn, delay) {
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
             }
+            
             timeoutRef.current = window.setTimeout(async () => {
                 try {
                     const response = await fn(...params);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Card.css';
 
-const PromotionCard = ({ promotion }) => {
+const PromotionCard = ({ promotion, onClickComments}) => {
     return (
         <div className="promotion-card">
             <img src={promotion.imageUrl} alt={promotion.title} className="promotion-card__image" />
@@ -11,12 +11,12 @@ const PromotionCard = ({ promotion }) => {
                 <span className="promotion-card__price">R$ {promotion.price}</span>
                 <footer className="promotion-card__footer">
                     {promotion.comments.length > 0 && (
-                        <div className="promotion-card__comment">"{promotion.comments[0].comment}"</div>
+                        <div className="promotion-card__comment"  >"{promotion.comments[0].comment}"</div>
                     )}
-                    <div className="promotion-card__comments-count">{promotion.comments.length}{' '}
-                        {promotion.comments.length > 1 ? 'Comentários' : 'Comentário'}</div>
+                    <button className="promotion-card__comments-count" onClick={onClickComments}>{promotion.comments.length}{' '}
+                        {promotion.comments.length > 1 ? 'Comentários' : 'Comentário'}</button>
                     <a href={promotion.url} target="_blank" rel="noreferrer" className="promotion-card__link">IR PARA O SITE</a>
-                    <Link to={`/edit/${promotion.id}`}>Editar</Link>
+                    <Link to={`/edit/${promotion.id}`} className="promotion-card__edit-button">Editar</Link>
                 </footer>
             </div>
         </div>
